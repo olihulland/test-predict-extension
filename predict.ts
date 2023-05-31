@@ -77,10 +77,10 @@ namespace ML_Movement {
     const data = recording.getData();
     let fv = [];
     
-    let x_arr = [];
-    let y_arr = [];
-    let z_arr = [];
-    let s_arr = [];
+    let x_arr: number[] = [];
+    let y_arr: number[] = [];
+    let z_arr: number[] = [];
+    let s_arr: number[] = [];
 
     for (let i = 0; i < data.length; i++) {
         x_arr.push(data[i]["x"]);
@@ -189,13 +189,11 @@ return yPeaks;
     // zPeaks
         // Custom feature calculator
       
-        let zPeaks_fn : (dataIn: DataPoint[]) => number;
-        zPeaks_fn = (dataIn: DataPoint[]) => {         
+        let zPeaks_fn : () => number;
+        zPeaks_fn = () => {         
             const mult = 3;
             let zPeaks = 0;
-            const zValues = dataIn
-                .map((dataPoint) => dataPoint["z"])
-                .filter((val) => val !== undefined);
+            const zValues = z_arr;
             const zMean = zValues.reduce((a, b) => a + b, 0) / zValues.length;
             const zStd = Math.sqrt(
             zValues.map((z) => Math.pow(z - zMean, 2)).reduce((a, b) => a + b, 0) /
@@ -209,7 +207,7 @@ return yPeaks;
             }
             return zPeaks;
         };
-        fv.push(zPeaks_fn(data));
+        fv.push(zPeaks_fn());
         
     // sMean
         // Common feature calculator
