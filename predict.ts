@@ -2,9 +2,9 @@
 /* --- enums --- */
 
 enum Classification {
-    Shaking = 0,
-    Circle = 1,
-    Still = 2
+    Circle = 0,
+    Still = 1,
+    Shaking = 2
   }  
 
 namespace ML_Movement {
@@ -73,20 +73,61 @@ namespace ML_Movement {
     return Math.sqrt(sum / data.length);
   };
   
+  function highPassFilter(
+    data: number[],
+    cutoffFrequency: number,
+    samplingRate: number
+  ): number[] {
+    const RC = 1.0 / (2.0 * Math.PI * cutoffFrequency);
+    const dt = 1.0 / samplingRate;
+    const alpha = RC / (RC + dt);
+  
+    const filteredData: number[] = [];
+    let prevFilteredValue = data[0];
+  
+    for (let i = 1; i < data.length; i++) {
+      const filteredValue = alpha * (prevFilteredValue + data[i] - data[i - 1]);
+      filteredData.push(filteredValue);
+      prevFilteredValue = filteredValue;
+    }
+  
+    return filteredData;
+  }
+
+  const countSignificantPeaks = (
+    data: number[],
+    thresholdPercentage: number
+  ): number => {
+    const threshold = (thresholdPercentage / 100) * (max(data) - min(data));
+    let numPeaks = 0;
+  
+    for (let i = 1; i < data.length - 1; i++) {
+      if (
+        data[i] > data[i - 1] &&
+        data[i] > data[i + 1] &&
+        Math.abs(data[i]) > threshold
+      ) {
+        numPeaks++;
+      }
+    }
+  
+    return numPeaks;
+  };
+  
   const featureVector = (recording: Recording): number[] => {
     const data = recording.getData();
     let fv = [];
     
     let x_arr: number[] = [];
-    let y_arr: number[] = [];
-    let z_arr: number[] = [];
-    let s_arr: number[] = [];
-
+  let y_arr: number[] = [];
+  let z_arr: number[] = [];
+  let s_arr: number[] = [];
+      
     for (let i = 0; i < data.length; i++) {
-        x_arr.push(data[i]["x"]);
-        y_arr.push(data[i]["y"]);
-        z_arr.push(data[i]["z"]);
-        s_arr.push(data[i]["s"]);
+      x_arr.push(data[i].x);
+      y_arr.push(data[i].y);
+      z_arr.push(data[i].z);
+      s_arr.push(data[i].s);
     }
     
     // xMax
@@ -105,30 +146,9 @@ namespace ML_Movement {
               fv.push(xStd_std);
         
     // xPeaks
-        // Custom feature calculator
-      
-        function xPeaks_fn (dataIn: DataPoint[]): number {         
-          
-const mult = 3;
-let xPeaks = 0;
-const xValues = dataIn
-  .map((dataPoint) => dataPoint["x"])
-  .filter((val) => val !== undefined);
-const xMean = xValues.reduce((a, b) => a + b, 0) / xValues.length;
-const xStd = Math.sqrt(
-  xValues.map((x) => Math.pow(x - xMean, 2)).reduce((a, b) => a + b, 0) /
-    xValues.length
-);
-for (let i = 0; i < xValues.length; i++) {
-  const x = xValues[i];
-  if (x > xMean + mult * xStd) {
-    xPeaks++;
-  }
-}
-return xPeaks;
-    
-        };
-        fv.push(xPeaks_fn(data));
+        // Common feature calculator
+              const xPeaks_filteredData = highPassFilter(x_arr, 10.0, max(x_arr) * 2);
+              fv.push(countSignificantPeaks(xPeaks_filteredData, 10));
         
     // yMax
         // Common feature calculator
@@ -146,30 +166,9 @@ return xPeaks;
               fv.push(yStd_std);
         
     // yPeaks
-        // Custom feature calculator
-      
-        function yPeaks_fn (dataIn: DataPoint[]): number {         
-          
-const mult = 3;
-let yPeaks = 0;
-const yValues = dataIn
-  .map((dataPoint) => dataPoint["y"])
-  .filter((val) => val !== undefined);
-const yMean = yValues.reduce((a, b) => a + b, 0) / yValues.length;
-const yStd = Math.sqrt(
-  yValues.map((y) => Math.pow(y - yMean, 2)).reduce((a, b) => a + b, 0) /
-    yValues.length
-);
-for (let i = 0; i < yValues.length; i++) {
-  const y = yValues[i];
-  if (y > yMean + mult * yStd) {
-    yPeaks++;
-  }
-}
-return yPeaks;
-
-        };
-        fv.push(yPeaks_fn(data));
+        // Common feature calculator
+              const yPeaks_filteredData = highPassFilter(y_arr, 10.0, max(y_arr) * 2);
+              fv.push(countSignificantPeaks(yPeaks_filteredData, 10));
         
     // zMax
         // Common feature calculator
@@ -187,23 +186,9 @@ return yPeaks;
               fv.push(zStd_std);
         
     // zPeaks
-        // Custom feature calculator
-      
-        const z_mult = 3;
-        let z_zPeaks = 0;
-        const z_zValues = z_arr;
-        const z_zMean = z_zValues.reduce((a, b) => a + b, 0) / z_zValues.length;
-        const z_zStd = Math.sqrt(
-        z_zValues.map((z) => Math.pow(z - z_zMean, 2)).reduce((a, b) => a + b, 0) /
-            z_zValues.length
-        );
-        for (let i = 0; i < z_zValues.length; i++) {
-            const z = z_zValues[i];
-            if (z > z_zMean + z_mult * z_zStd) {
-                z_zPeaks++;
-            }
-        }
-        fv.push(z_zPeaks);
+        // Common feature calculator
+              const zPeaks_filteredData = highPassFilter(z_arr, 10.0, max(z_arr) * 2);
+              fv.push(countSignificantPeaks(zPeaks_filteredData, 10));
         
     // sMean
         // Common feature calculator
