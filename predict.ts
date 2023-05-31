@@ -189,24 +189,7 @@ return yPeaks;
     // zPeaks
         // Custom feature calculator
       
-        let zPeaks_fn : () => number;
-        zPeaks_fn = () => {         
-            const mult = 3;
-            let zPeaks = 0;
-            const zValues = z_arr;
-            const zMean = zValues.reduce((a, b) => a + b, 0) / zValues.length;
-            const zStd = Math.sqrt(
-            zValues.map((z) => Math.pow(z - zMean, 2)).reduce((a, b) => a + b, 0) /
-                zValues.length
-            );
-            for (let i = 0; i < zValues.length; i++) {
-                const z = zValues[i];
-                if (z > zMean + mult * zStd) {
-                    zPeaks++;
-                }
-            }
-            return zPeaks;
-        };
+        const zPeaks_fn = () => {return 1}
         fv.push(zPeaks_fn());
         
     // sMean
