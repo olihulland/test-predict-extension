@@ -270,14 +270,14 @@ namespace ML_Movement {
   }
 
   //% shim=predict::predict
-  export function _predict(featureVector: string): string {
-    return "shim";
+  export function _predict(featureVector: number[]): Classification {
+    return 0;
   }
   
   //% block="predict based on feature vector $featureVector"
   //% featureVector.shadow="generateFeatureVector"
   export function predict(featureVector: number[]): Classification {
-    serial.writeLine(_predict(featureVector.join(",")));
+    serial.writeLine(_predict(featureVector).toString());
     return Classification.Circle;
   }
 

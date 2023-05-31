@@ -6,9 +6,10 @@ using namespace pxt;
 
 namespace predict {
     //%
-    String predict(String featureVector) {
+    int predict(RefCollection featureVector) {
         #if MICROBIT_CODAL
-            return featureVector;
+            
+            return featureVector.length();
         #else
             target_panic(PANIC_VARIANT_NOT_SUPPORTED);
         #endif
