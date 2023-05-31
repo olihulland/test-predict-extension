@@ -189,24 +189,25 @@ return yPeaks;
     // zPeaks
         // Custom feature calculator
       
-        let zPeaks_fn = (dataIn: DataPoint[]): number => {         
-          const mult = 3;
-let zPeaks = 0;
-const zValues = dataIn
-  .map((dataPoint) => dataPoint["z"])
-  .filter((val) => val !== undefined);
-const zMean = zValues.reduce((a, b) => a + b, 0) / zValues.length;
-const zStd = Math.sqrt(
-  zValues.map((z) => Math.pow(z - zMean, 2)).reduce((a, b) => a + b, 0) /
-    zValues.length
-);
-for (let i = 0; i < zValues.length; i++) {
-  const z = zValues[i];
-  if (z > zMean + mult * zStd) {
-    zPeaks++;
-  }
-}
-return zPeaks;
+        let zPeaks_fn : (dataIn: DataPoint[]) => number;
+        zPeaks_fn = (dataIn: DataPoint[]) => {         
+            const mult = 3;
+            let zPeaks = 0;
+            const zValues = dataIn
+                .map((dataPoint) => dataPoint["z"])
+                .filter((val) => val !== undefined);
+            const zMean = zValues.reduce((a, b) => a + b, 0) / zValues.length;
+            const zStd = Math.sqrt(
+            zValues.map((z) => Math.pow(z - zMean, 2)).reduce((a, b) => a + b, 0) /
+                zValues.length
+            );
+            for (let i = 0; i < zValues.length; i++) {
+                const z = zValues[i];
+                if (z > zMean + mult * zStd) {
+                    zPeaks++;
+                }
+            }
+            return zPeaks;
         };
         fv.push(zPeaks_fn(data));
         
