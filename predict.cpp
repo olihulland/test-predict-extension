@@ -7,6 +7,6 @@ using namespace pxt;
 namespace predict {
     //%
     int predict(float * featureVector) {
-        return uBit.getSerialNumber();
+        return uBit.timer.getTime();
     }
 }
