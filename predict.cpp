@@ -6,9 +6,9 @@ using namespace pxt;
 
 namespace predict {
     //%
-    int predict(float * featureVector) {
+    String predict(String featureVector) {
         #if MICROBIT_CODAL
-            return (int)featureVector[0];
+            return featureVector;
         #else
             target_panic(PANIC_VARIANT_NOT_SUPPORTED);
         #endif

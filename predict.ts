@@ -268,12 +268,16 @@ namespace ML_Movement {
     }
     return rec;
   }
+
+  //% shim=predict::predict
+  export function _predict(featureVector: string): string {
+    return "shim";
+  }
   
   //% block="predict based on feature vector $featureVector"
   //% featureVector.shadow="generateFeatureVector"
-  //% shim=predict::predict
   export function predict(featureVector: number[]): Classification {
-    // TODO IMPLEMENT THE PREDICTION HERE!
+    serial.writeLine(_predict(featureVector.join(",")));
     return Classification.Circle;
   }
 
