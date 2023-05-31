@@ -8,8 +8,7 @@ namespace predict {
     //%
     int predict(RefCollection featureVector) {
         #if MICROBIT_CODAL
-            
-            return featureVector.length();
+            return featureVector.getAt(0);
         #else
             target_panic(PANIC_VARIANT_NOT_SUPPORTED);
         #endif
