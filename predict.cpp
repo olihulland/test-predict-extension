@@ -1,10 +1,12 @@
 #include "pxt.h"
 
+#include "MicroBit.h"
+
 using namespace pxt;
 
 namespace predict {
     //%
     int predict(float * featureVector) {
-        return 3;
+        return uBit.getSerialNumber();
     }
 }
