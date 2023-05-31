@@ -189,7 +189,7 @@ return yPeaks;
     // zPeaks
         // Custom feature calculator
       
-        function zPeaks_fn (dataIn: DataPoint[]): number {         
+        let zPeaks_fn = (dataIn: DataPoint[]): number => {         
           const mult = 3;
 let zPeaks = 0;
 const zValues = dataIn
