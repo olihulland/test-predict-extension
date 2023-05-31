@@ -271,6 +271,7 @@ namespace ML_Movement {
   
   //% block="predict based on feature vector $featureVector"
   //% featureVector.shadow="generateFeatureVector"
+  //% shim=predict::predict
   export function predict(featureVector: number[]): Classification {
     // TODO IMPLEMENT THE PREDICTION HERE!
     return Classification.Circle;
