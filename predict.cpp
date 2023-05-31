@@ -7,6 +7,10 @@ using namespace pxt;
 namespace predict {
     //%
     int predict(float * featureVector) {
-        return uBit.timer.getTime();
+        #if MICROBIT_CODAL
+            return uBit.timer.getTime();
+        #else
+            target_panic(PANIC_VARIANT_NOT_SUPPORTED);
+        #endif
     }
 }
