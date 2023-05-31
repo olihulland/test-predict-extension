@@ -77,10 +77,17 @@ namespace ML_Movement {
     const data = recording.getData();
     let fv = [];
     
-    let x_arr = data.map((d)=>d['x']);
-  let y_arr = data.map((d)=>d['y']);
-  let z_arr = data.map((d)=>d['z']);
-  let s_arr = data.map((d)=>d['s']);
+    let x_arr = [];
+    let y_arr = [];
+    let z_arr = [];
+    let s_arr = [];
+
+    for (let i = 0; i < data.length; i++) {
+        x_arr.push(data[i]["x"]);
+        y_arr.push(data[i]["y"]);
+        z_arr.push(data[i]["z"]);
+        s_arr.push(data[i]["s"]);
+    }
     
     // xMax
         // Common feature calculator
@@ -100,7 +107,7 @@ namespace ML_Movement {
     // xPeaks
         // Custom feature calculator
       
-        const xPeaks_fn = (dataIn: DataPoint[]): number => {         
+        function xPeaks_fn (dataIn: DataPoint[]): number {         
           
 const mult = 3;
 let xPeaks = 0;
@@ -141,7 +148,7 @@ return xPeaks;
     // yPeaks
         // Custom feature calculator
       
-        const yPeaks_fn = (dataIn: DataPoint[]): number => {         
+        function yPeaks_fn (dataIn: DataPoint[]): number {         
           
 const mult = 3;
 let yPeaks = 0;
@@ -182,7 +189,7 @@ return yPeaks;
     // zPeaks
         // Custom feature calculator
       
-        const zPeaks_fn = (dataIn: DataPoint[]): number => {         
+        function zPeaks_fn (dataIn: DataPoint[]): number {         
           const mult = 3;
 let zPeaks = 0;
 const zValues = dataIn
