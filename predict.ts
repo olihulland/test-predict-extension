@@ -77,10 +77,10 @@ namespace ML_Movement {
     const data = recording.getData();
     let fv = [];
     
-    const x_arr = data.map((d)=>d['x']);
-  const y_arr = data.map((d)=>d['y']);
-  const z_arr = data.map((d)=>d['z']);
-  const s_arr = data.map((d)=>d['s']);
+    let x_arr = data.map((d)=>d['x']);
+  let y_arr = data.map((d)=>d['y']);
+  let z_arr = data.map((d)=>d['z']);
+  let s_arr = data.map((d)=>d['s']);
     
     // xMax
         // Common feature calculator
