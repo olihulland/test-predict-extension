@@ -189,24 +189,21 @@ return yPeaks;
     // zPeaks
         // Custom feature calculator
       
-        let zPeaks_val = ((dataIn: DataPoint[]) => {         
-            const mult = 3;
-            let zPeaks = 0;
-            const zValues = z_arr;
-            const zMean = zValues.reduce((a, b) => a + b, 0) / zValues.length;
-            const zStd = Math.sqrt(
-            zValues.map((z) => Math.pow(z - zMean, 2)).reduce((a, b) => a + b, 0) /
-                zValues.length
-            );
-            for (let i = 0; i < zValues.length; i++) {
-                const z = zValues[i];
-                if (z > zMean + mult * zStd) {
-                    zPeaks++;
-                }
+        const z_mult = 3;
+        let z_zPeaks = 0;
+        const z_zValues = z_arr;
+        const z_zMean = z_zValues.reduce((a, b) => a + b, 0) / z_zValues.length;
+        const z_zStd = Math.sqrt(
+        z_zValues.map((z) => Math.pow(z - z_zMean, 2)).reduce((a, b) => a + b, 0) /
+            z_zValues.length
+        );
+        for (let i = 0; i < z_zValues.length; i++) {
+            const z = z_zValues[i];
+            if (z > z_zMean + z_mult * z_zStd) {
+                z_zPeaks++;
             }
-            return zPeaks;
-        })(data);
-        fv.push(zPeaks_val);
+        }
+        fv.push(z_zPeaks);
         
     // sMean
         // Common feature calculator
