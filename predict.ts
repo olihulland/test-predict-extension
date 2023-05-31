@@ -189,7 +189,7 @@ return yPeaks;
     // zPeaks
         // Custom feature calculator
       
-        const zPeaks_fn = () => {return 1}
+        const zPeaks_fn = new Function(undefined, "return 1")
         fv.push(zPeaks_fn());
         
     // sMean
