@@ -6,7 +6,7 @@ using namespace pxt;
 
 namespace predict {
     //%
-    int predict(string featureVector) {
+    int predict(String featureVector) {
         #if MICROBIT_CODAL           
             return featureVector.find(",");
         #else
