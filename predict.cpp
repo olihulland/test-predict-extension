@@ -1,6 +1,7 @@
 #include "pxt.h"
 
 #include "MicroBit.h"
+#include "model.h"
 
 using namespace pxt;
 
@@ -41,6 +42,10 @@ namespace predict {
             memcpy(numStr, strData + start, numLen);
             numStr[numLen] = '\0';
             data[index] = atof(numStr);
+
+            // TODO havent checked negatives parsed properly or that decimals are maintained (could test by mult by 10 and checking)
+
+            unsigned char * modelPointer = model_tflite;
 
             return (int)data[12];
         #else
