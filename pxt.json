@@ -18,5 +18,14 @@
     "supportedTargets": [
         "microbit"
     ],
-    "preferredEditor": "tsprj"
+    "preferredEditor": "tsprj",
+    "yotta": {
+        "config": {
+            "codal": {
+                "DEVICE_BLE": 0,
+                "SOFTDEVICE_PRESENT": 0,
+                "MICROBIT_BLE_ENABLED": 0
+            }
+        }
+    }
 }
