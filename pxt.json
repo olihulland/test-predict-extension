@@ -9,7 +9,8 @@
         "README.md",
         "predict.ts",
         "predict.cpp",
-        "model.h"
+        "model.h",
+        "model.cpp"
     ],
     "public": true,
     "targetVersions": {
