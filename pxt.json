@@ -29,5 +29,10 @@
                 "MICROBIT_BLE_ENABLED": 0
             }
         }
+    },
+    "codal": {
+        "libraries": [
+            "https://github.com/olihulland/codal-tflite"
+        ]
     }
 }
