@@ -2,7 +2,10 @@
 
 #include "MicroBit.h"
 #include "model.h"
+
+#if MICROBIT_CODAL
 #include "tflite_codal.h"
+#endif
 
 using namespace pxt;
 
