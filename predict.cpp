@@ -4,7 +4,7 @@
 #include "model.h"
 
 // #if MICROBIT_CODAL
-// #include "tflite_codal.h"
+#include "tflite_codal.h"
 // #endif
 
 using namespace pxt;
