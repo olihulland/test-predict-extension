@@ -6,9 +6,9 @@ using namespace pxt;
 
 namespace predict {
     //%
-    int predict(RefCollection featureVector) {
+    int predict(BoxedBuffer featureVector) {
         #if MICROBIT_CODAL           
-            int len = featureVector.length();
+            int len = PXT_BUFFER_LENGTH(featureVector);
             return len;
         #else
             target_panic(PANIC_VARIANT_NOT_SUPPORTED);
