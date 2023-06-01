@@ -19,9 +19,6 @@
         "microbit"
     ],
     "preferredEditor": "tsprj",
-    "disablesVariants": [
-        "mbdal"
-    ],
     "yotta": {
         "config": {
             "codal": {
