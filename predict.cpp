@@ -1,6 +1,7 @@
 #include "pxt.h"
 
 #include "MicroBit.h"
+#include "model.h"
 
 using namespace pxt;
 

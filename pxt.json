@@ -8,7 +8,8 @@
     "files": [
         "README.md",
         "predict.ts",
-        "predict.cpp"
+        "predict.cpp",
+        "model.h"
     ],
     "public": true,
     "targetVersions": {
