@@ -270,15 +270,14 @@ namespace ML_Movement {
   }
 
   //% shim=predict::predict
-  export function _predict(featureVector: number[]): Classification {
+  export function _predict(f0: number, f1: number, f2: number, f3: number, f4: number, f5: number, f6: number, f7: number, f8: number, f9: number, f10: number, f11: number, f12: number): Classification {
     return 0;
   }
   
   //% block="predict based on feature vector $featureVector"
   //% featureVector.shadow="generateFeatureVector"
   export function predict(featureVector: number[]): Classification {
-    // return _predict(featureVector.join(','));
-    return _predict(featureVector);
+    return _predict(featureVector[0], featureVector[1], featureVector[2], featureVector[3], featureVector[4], featureVector[5], featureVector[6], featureVector[7], featureVector[8], featureVector[9], featureVector[10], featureVector[11], featureVector[12]);
   }
 
 }
