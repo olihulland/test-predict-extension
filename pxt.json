@@ -18,15 +18,5 @@
     "supportedTargets": [
         "microbit"
     ],
-    "preferredEditor": "tsprj",
-    "yotta": {
-        "config": {
-            "codal": {
-                "DEVICE_BLE": 0,
-                "DEVICE_DMESG": 1,
-                "DMESG_SERIAL_DEBUG": 1,
-                "CODAL_DEBUG": 1
-            }
-        }
-    }
+    "preferredEditor": "tsprj"
 }
