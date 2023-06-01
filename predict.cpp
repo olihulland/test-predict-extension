@@ -6,7 +6,7 @@ using namespace pxt;
 
 namespace predict {
     //%
-    int predict(BoxedBuffer featureVector) {
+    int predict(BoxedBuffer* featureVector) {
         #if MICROBIT_CODAL           
             int len = PXT_BUFFER_LENGTH(featureVector);
             return len;
