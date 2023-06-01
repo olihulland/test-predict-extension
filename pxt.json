@@ -32,7 +32,7 @@
     },
     "codal": {
         "libraries": [
-            "https://github.com/olihulland/codal-tflite"
+            "https://github.com/olihulland/codal-tflite#main"
         ]
     },
     "disablesVariants": [
