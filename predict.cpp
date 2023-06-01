@@ -8,7 +8,7 @@ namespace predict {
     //%
     int predict(String featureVector) {
         #if MICROBIT_CODAL           
-            char * strData = PXT_STRING_DATA(featureVector);
+            const char * strData = PXT_STRING_DATA(featureVector);
             int len = PXT_STRING_LENGTH(featureVector);
             return len;
         #else
