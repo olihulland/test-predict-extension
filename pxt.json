@@ -34,5 +34,8 @@
         "libraries": [
             "https://github.com/olihulland/codal-tflite"
         ]
-    }
+    },
+    "disablesVariants": [
+        "mbdal"
+    ]
 }
