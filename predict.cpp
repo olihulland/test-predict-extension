@@ -2,6 +2,7 @@
 
 #include "MicroBit.h"
 #include "model.h"
+#include "tflite_codal.h"
 
 using namespace pxt;
 
