@@ -35,8 +35,14 @@ namespace predict {
                     start = i + 1;
                 }
             }
+            int end = strLen - 1;
+            int numLen = end - start + 1;
+            char * numStr = (char *)malloc(sizeof(char) * (numLen + 1));
+            memcpy(numStr, strData + start, numLen);
+            numStr[numLen] = '\0';
+            data[index] = atof(numStr);
 
-            return (int)data[11];
+            return (int)data[12];
         #else
             target_panic(PANIC_VARIANT_NOT_SUPPORTED);
         #endif
