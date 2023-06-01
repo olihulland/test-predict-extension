@@ -8,7 +8,7 @@ namespace predict {
     //%
     int predict(RefCollection featureVector) {
         #if MICROBIT_CODAL           
-            int len = featureVector->length();
+            int len = featureVector.length();
             return len;
         #else
             target_panic(PANIC_VARIANT_NOT_SUPPORTED);
