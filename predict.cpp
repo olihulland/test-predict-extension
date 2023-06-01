@@ -36,7 +36,7 @@ namespace predict {
                 }
             }
 
-            return (int)data[12];
+            return (int)data[11];
         #else
             target_panic(PANIC_VARIANT_NOT_SUPPORTED);
         #endif
