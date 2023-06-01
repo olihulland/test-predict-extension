@@ -1,11 +1,11 @@
 #ifndef TENSORFLOW_LITE_CODAL_H
 #define TENSORFLOW_LITE_CODAL_H
 
-#include "tensorflow_lite_micro_all_ops_resolver.h"
-#include "tensorflow_lite_micro_micro_interpreter.h"
-#include "tensorflow_lite_micro_micro_log.h"
-#include "tensorflow_lite_micro_system_setup.h"
-#include "tensorflow_lite_schema_schema_generated.h"
+#include "tensorflow/lite/micro/all_ops_resolver.h"
+#include "tensorflow/lite/micro/micro_interpreter.h"
+#include "tensorflow/lite/micro/micro_log.h"
+#include "tensorflow/lite/micro/system_setup.h"
+#include "tensorflow/lite/schema/schema_generated.h"
 
 /**
  * Class for interfacing CODAL with Tensorflow Lite models.
