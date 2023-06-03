@@ -7,6 +7,8 @@ enum Classification {
     Shaking = 2
   }  
 
+type PredictionError = number;
+
 namespace ML_Movement {
   
   /* --- state --- */
@@ -270,14 +272,14 @@ namespace ML_Movement {
   }
 
   //% shim=predict::predict
-  export function _predict(featureVector: string): Classification {
-    return 0;
+  export function _predict(featureVector: string, maxClassNum: number): Classification | PredictionError {
+    return -1;
   }
   
   //% block="predict based on feature vector $featureVector"
   //% featureVector.shadow="generateFeatureVector"
   export function predict(featureVector: number[]): Classification {
-    return _predict(featureVector.join(','));
+    return _predict(featureVector.join(','), 2);
   }
 
 }

@@ -10,9 +10,24 @@
 using namespace pxt;
 
 namespace predict {
+    TfLiteCodal * tf;
+
+    bool initialised = false;
+
+    void init() {
+        if (!initialised) {
+            tf = new TfLiteCodal();
+            tf->initialise(model_tflite, 4000);
+            initialised = true;
+        }
+    }
+    
+
     //%
-    int predict(String featureVector) {
-        #if MICROBIT_CODAL           
+    int predict(String featureVector, int maxClassNum) {
+        #if MICROBIT_CODAL
+            // PARSE FEATURE VECTOR STRING TO FLOAT ARRAY
+
             const char * strData = PXT_STRING_DATA(featureVector);
             int strLen = PXT_STRING_DATA_LENGTH(featureVector);
 
@@ -47,9 +62,23 @@ namespace predict {
             numStr[numLen] = '\0';
             data[index] = atof(numStr);
 
-            // TODO havent checked negatives parsed properly or that decimals are maintained (could test by mult by 10 and checking)
+            // CONDUCT INFERENCE AND RETURN PREDCITED CLASS
 
-            return (int)data[12];
+            init();
+
+            float * results = (float *) tf->inferArray(data, tf->TensorType::TT_FLOAT, index+1);
+
+            // find max num
+            float max = 0;
+            int maxIndex = -1;
+            for (int i = 0; i < maxClassNum+1; i++) {
+                if (results[i] > max) {
+                    max = results[i];
+                    maxIndex = i;
+                }
+            }
+
+            return maxIndex;
         #else
             target_panic(PANIC_VARIANT_NOT_SUPPORTED);
         #endif

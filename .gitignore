@@ -1,0 +1,5 @@
+_locales/
+built/
+pxt_modules/
+main.ts
+.DS_Store
