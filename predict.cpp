@@ -21,7 +21,6 @@ namespace predict {
             initialised = true;
         }
     }
-    
 
     //%
     int predict(String featureVector, int maxClassNum) {
@@ -77,6 +76,9 @@ namespace predict {
                     maxIndex = i;
                 }
             }
+
+            free(data);
+            free(numStr);
 
             return maxIndex;
         #else

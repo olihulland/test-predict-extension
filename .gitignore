@@ -2,4 +2,5 @@ _locales/
 built/
 pxt_modules/
 main.ts
+pxt.json
 .DS_Store
